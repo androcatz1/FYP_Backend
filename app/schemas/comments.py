@@ -28,7 +28,7 @@ class UserInputSchema(BaseModel):
         df_cleaned = run_pipeline(df_temp)
         
         # 4. Check if the pipeline completely wiped out the text (e.g. all punctuation/emojis)
-        if df_cleaned.empty or "text" not in df_cleaned.columns or df_cleaned["text"].isna().all():
+        if df_cleaned.empty or "text" not in df_cleaned.columns or df_cleaned["text_processed"].isna().all():
             data["text"] = ""  # Or raise a ValueError if you want to block the request
         else:
             # Extract the single cleaned string out of the processed DataFrame
