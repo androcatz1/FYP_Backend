@@ -32,7 +32,7 @@ class UserInputSchema(BaseModel):
             data["text"] = ""  # Or raise a ValueError if you want to block the request
         else:
             # Extract the single cleaned string out of the processed DataFrame
-            data["text"] = df_cleaned["text"].iloc[0]
+            data["text"] = df_cleaned["text_processed"].iloc[0]
             
         # 5. Return the modified dictionary back to Pydantic
         return data
