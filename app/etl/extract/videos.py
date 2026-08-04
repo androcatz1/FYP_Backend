@@ -47,6 +47,11 @@ async def fetch_video_metadata(video_id):
     if duration == "" or duration == "P0D":
         raise ValueError("Video is still processing, please try again!")
 
+    category_id = snippet.get("categoryId", "")
+
+    if category_id != "25":
+        raise ValueError("Please only input News videos.")
+    
     platform = detect_short(video_id)
     
     topic = None
