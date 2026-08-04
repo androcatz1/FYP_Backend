@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS comments (
     video_id TEXT,
     text TEXT,
     text_processed TEXT,
+    text_no_stopwords TEXT,
     label INT
 );
 """
