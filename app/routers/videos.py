@@ -1,4 +1,4 @@
-from fastapi import Depends, APIRouter, HTTPException, status, Query
+from fastapi import Depends, APIRouter, HTTPException, status, Query, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import ValidationError
 
@@ -12,11 +12,15 @@ from app.services.pipeline.videos import new_video_pipeline
 from app.services.videos import check_video_id_exist, get_single_video_overview, get_filtered_video_details_list
 from app.services.comments import get_paginated_video_comments, get_top_keywords
 
+from app.core.limiter import limiter
+
+
 router = APIRouter(prefix="/api/videos")
 
 # new video inputs
 @router.get("/get_video")
-async def get_new_video(db: AsyncSession = Depends(get_db_static), url:str = Query(...)):  
+@limiter.limit("3/minute")
+async def get_new_video(request: Request,db: AsyncSession = Depends(get_db_static), url:str = Query(...)):  
     try:
         video = UserInputSchema(url=url)
     except ValidationError as e:
