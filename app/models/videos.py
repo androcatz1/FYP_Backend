@@ -5,7 +5,7 @@ from sqlalchemy import String, Integer, Double, BigInteger, TIMESTAMP
 
 
 class VideosModel(Base):
-    __tablename__ = "video_metrics_test"
+    __tablename__ = "video_metrics"
 
     id: Mapped[int] = mapped_column(Integer, primary_key= True, autoincrement=True)
     video_id: Mapped[str] = mapped_column(String)
