@@ -3,8 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import comments, videos, analytics, time_series, model
 
+from app.core.limiter import limiter
+from app.core.exceptions import RateLimitExceeded, rate_limit_handler
 
 app = FastAPI()
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, rate_limit_handler)
 
 origins = [
     "http://localhost:5173",
