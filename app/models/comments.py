@@ -4,7 +4,7 @@ from sqlalchemy import String, Integer
 
 
 class CommentsModel(Base):
-    __tablename__ = "comments_test"
+    __tablename__ = "comments"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement= True)
     video_id: Mapped[str] = mapped_column(String)
     text: Mapped[str] = mapped_column(String)
