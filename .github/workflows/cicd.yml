@@ -3,7 +3,11 @@ name: Build Push and Deploy to Cloud Run
 on:
   push:
     branches: ["main"]
-
+    paths:
+      - "app/**"
+      - "requirements.txt"
+      - "Dockerfile"
+      
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
