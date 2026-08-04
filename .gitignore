@@ -219,3 +219,5 @@ __marimo__/
 
 app/database/video_time_series/readme.md
 key.json
+
+*migrate_to_postgresql.py
