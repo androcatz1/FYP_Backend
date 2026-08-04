@@ -2,6 +2,12 @@
 
 SentiRadar is a FastAPI backend for the final year project, linked to the [YT_TimeSeries automation repository](https://github.com/androcatz1/YT_TimeSeries.git) and the [SentiRadar frontend repository](https://github.com/androcatz1/SentiRadar-Frontend.git). The service ingests YouTube video and comment data, transforms it with an ETL pipeline, stores it in PostgreSQL, and exposes analytics and machine learning endpoints for the frontend.
 
+## 🔴 Live Site
+
+The frontend dashboard is hosted here: [Hosted Dashboard](https://sentiradar-frontend.web.app/).
+
+The backend is hosted on Google Cloud Platform with Docker-based deployment and CI/CD automation.
+
 ## 📌 Problem Statement
 
 Social media has become a major source of news consumption in Malaysia, but public reaction is difficult to interpret at scale. YouTube comments are often code-mixed in Malay and English, which makes standard sentiment models less reliable, while manual review is slow and can be affected by bias. At the same time, engagement metrics like views and likes do not fully reflect audience sentiment, so analysts need a system that can capture both popularity and opinion in one place.
@@ -44,7 +50,7 @@ The diagram above shows the full flow: analysis and modelling, the containerized
 - Joblib for serialized vectorizers and classifiers
 - Jupyter for experimentation and model development
 - GitHub Actions for automation and CI/CD, linked to [YT_TimeSeries](https://github.com/androcatz1/YT_TimeSeries.git)
-- Docker for containerized deployment
+- Docker and GCP for containerized backend deployment and CI/CD
 
 ## 🗂️ Project Structure
 
@@ -148,12 +154,14 @@ The API will be available at `http://127.0.0.1:8000`.
 
 ## 🐳 Docker
 
-Build and run the backend container:
+Build and run the backend container locally:
 
 ```bash
 docker build -t fyp-backend .
 docker run -p 8000:8000 --env-file .env fyp-backend
 ```
+
+The production backend deployment uses Docker on GCP and is delivered through CI/CD pipelines.
 
 ## 🌐 Frontend Integration
 
